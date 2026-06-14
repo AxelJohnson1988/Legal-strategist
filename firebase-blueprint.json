@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "Reminder": {
+      "title": "Reminder",
+      "description": "A notification for a legal deadline or court date.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The UID of the user who owns this reminder." },
+        "title": { "type": "string", "description": "The title of the reminder." },
+        "description": { "type": "string", "description": "Extended details about the event." },
+        "date": { "type": "string", "format": "date-time", "description": "The date and time of the deadline or court appearance." },
+        "type": { "type": "string", "enum": ["filing", "court_date", "other"], "description": "The category of the event." },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "date", "type", "createdAt"]
+    },
+    "DraftDocument": {
+      "title": "DraftDocument",
+      "description": "A draft legal document such as a case brief, motion summary, or discovery plan.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The UID of the user who owns this draft." },
+        "title": { "type": "string", "description": "The title or subject of this draft document." },
+        "templateType": { "type": "string", "enum": ["case_brief", "motion_summary", "discovery_plan"], "description": "The type of legal template." },
+        "content": { "type": "object", "description": "Dynamic template content fields." },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "templateType", "content", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "reminders/{reminderId}": {
+      "schema": "Reminder",
+      "description": "User specific legal reminders."
+    },
+    "drafts/{draftId}": {
+      "schema": "DraftDocument",
+      "description": "Sovereign legal drafts and customized template briefs."
+    }
+  }
+}

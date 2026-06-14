@@ -1,0 +1,8 @@
+{
+  "name": "Phoenix Legal Strategist",
+  "description": "A high-performance AI legal consultant for high-stakes litigation support, case law analysis, and strategic investigative planning.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": []
+}
